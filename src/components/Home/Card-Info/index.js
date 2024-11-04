@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+
 const card = (props) => {
   return (
     <div className="card">
@@ -13,3 +14,4 @@ const card = (props) => {
     </div>
   );
 };
+export default card;
