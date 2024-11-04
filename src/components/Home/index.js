@@ -1,15 +1,15 @@
 import React from 'react';
-import Home from '..';
+import Search from './Search';
 
-function Search() {
+function Home() {
     const searchText = "Cari Cantika";
     
     return (
         <div>
-            <h1>Search</h1>
-            <Home/>
+            <h1>Home</h1>
+            <Search/>
         </div>
     );
 }
 
-export default Search;
+export default Home;
