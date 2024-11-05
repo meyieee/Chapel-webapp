@@ -1,5 +1,5 @@
 import { Home, Footer, Header } from "./components";
-import Card from "./components/Card-Info/index.js";
+import Card from "./components/Card-Info/Evoluton/index.js";
 const App = () => {
   return (
     /* JSX */
