@@ -5,7 +5,7 @@ const App = () => {
     /* JSX */
     <div>
       <h1>Hello World!</h1>
-      <CSSImageValueard />
+      <Card />
     </div>
   );
 };
