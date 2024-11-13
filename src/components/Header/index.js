@@ -33,7 +33,6 @@ const Header = () => {
             Chapel
           </a>
         </div>
-        {/* Menu links */}
         <div className="collapse navbar-collapse">
           <ul className="nav navbar-nav navbar-nav-first">
             <li>

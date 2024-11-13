@@ -1,4 +1,17 @@
+import { getDatabase, ref, onValue } from "firebase/database";
+import { useEffect, useState } from "react";
 const Footer = () => {
+  const [footer, setFooter] = useState([]);
+
+  useEffect(() => {
+    const db = getDatabase();
+    const footerRef = ref(db, "footer/");
+
+    onValue(footerRef, (snapshot) => {
+      const data = snapshot.val();
+      setFooter(data);
+    });
+  }, []);
   return (
     <footer id="footer">
       <div className="container">
@@ -6,7 +19,7 @@ const Footer = () => {
           <div className="col-md-4 col-sm-6">
             <div className="footer-info">
               <div className="section-title">
-                <h2>Headquarter</h2>
+                <h2>Chapel</h2>
               </div>
               <address>
                 <p>
@@ -36,28 +49,22 @@ const Footer = () => {
           <div className="col-md-4 col-sm-6">
             <div className="footer-info">
               <div className="section-title">
-                <h2>Contact Info</h2>
+                <h2>{footer.title}</h2>
               </div>
               <address>
-                <p>+65 2244 1100, +66 1800 1100</p>
+                <p>{footer.subTitle}</p>
                 <p>
-                  <a href="mailto:youremail.co">hello@youremail.co</a>
+                  <a href="rawungito@gmail.com"></a>
                 </p>
               </address>
               <div className="footer_menu">
-                <h2>Quick Links</h2>
+                <h2>{footer.title2}</h2>
                 <ul>
                   <li>
-                    <a href="#">Career</a>
+                    <a href="#">{footer.subTitle1}</a>
                   </li>
                   <li>
-                    <a href="#">Investor</a>
-                  </li>
-                  <li>
-                    <a href="#">Terms & Conditions</a>
-                  </li>
-                  <li>
-                    <a href="#">Refund Policy</a>
+                    <a href="#">{footer.subTitle2}</a>
                   </li>
                 </ul>
               </div>
