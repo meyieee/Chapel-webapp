@@ -26,7 +26,10 @@ const Footer = () => {
                 </li>
               </ul>
               <div className="copyright-text">
-                <p>Copyright Chapel</p>
+                <p style={{ marginTop: "20px", fontSize: "14px" }}>
+                  Copyright © {new Date().getFullYear()} YourCompany | All
+                  Rights Reserved
+                </p>
               </div>
             </div>
           </div>
