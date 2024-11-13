@@ -26,8 +26,7 @@ const Footer = () => {
                 </li>
               </ul>
               <div className="copyright-text">
-                <p>Copyright © 2019 Company Name</p>
-                <p>Design: TemplateMo</p>
+                <p>Copyright Chapel</p>
               </div>
             </div>
           </div>
