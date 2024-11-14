@@ -13,11 +13,23 @@ body {
   padding: 0 15px;
 }
 
+/* Navbar default */
 .navbar {
   background-color: #229799;
   padding: 10px 15px;
+  position: fixed; /* Membuat navbar tetap di atas saat scroll */
+  top: 0; /* Posisi navbar di bagian atas */
+  left: 0; /* Posisi navbar di kiri */
+  right: 0; /* Posisi navbar di kanan */
+  z-index: 1000; /* Memastikan navbar tetap di atas konten lainnya */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Menambahkan bayangan di bawah navbar */
 }
 
+body {
+  padding-top: 60px; /* Memberikan ruang di bawah navbar agar konten tidak tertutup */
+}
+
+/* Navbar brand */
 .navbar-brand {
   color: #fff;
   text-decoration: none;
@@ -25,6 +37,7 @@ body {
   font-weight: bold;
 }
 
+/* Navbar navigation */
 .navbar-nav {
   list-style: none;
   padding: 0;
@@ -46,9 +59,27 @@ body {
   border-radius: 5px;
 }
 
+/* Navbar responsive (untuk mobile view) */
+.navbar-toggle {
+  display: none; /* Menyembunyikan tombol hamburger jika menggunakan navbar fixed */
+}
+
+@media (max-width: 768px) {
+  .navbar-nav {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .navbar-toggle {
+    display: block; /* Menampilkan tombol hamburger di layar kecil */
+  }
+}
+
+
 .feature-thumb {
   background-color: #fff;
   padding: 20px;
+  margin-top: 40px;
   margin-bottom: 20px;
   border-radius: 8px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -56,7 +87,7 @@ body {
 }
 
 .feature-thumb h3 {
-  margin-top: 15px;
+  margin-top: 40px;
   font-size: 22px;
 }
 
