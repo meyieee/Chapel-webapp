@@ -1,4 +1,17 @@
+import { getDatabase, ref, onValue } from "firebase/database";
+import { useEffect, useState } from "react";
 const Feature = () => {
+  const [feature, setFeature] = useState([]);
+
+  useEffect(() => {
+    const db = getDatabase();
+    const featureRef = ref(db, "feature/");
+
+    onValue(featureRef, (snapshot) => {
+      const data = snapshot.val();
+      setFeature(data);
+    });
+  }, []);
   return (
     <section id="feature">
       <div className="container">
@@ -6,31 +19,22 @@ const Feature = () => {
           <div className="col-md-4 col-sm-4">
             <div className="feature-thumb">
               <span>01</span>
-              <h3>Trending Courses</h3>
-              <p>
-                Known is a free education HTML Bootstrap template. You can
-                modify it in any way and use it for your website.
-              </p>
+              <h3>{feature.title}</h3>
+              <p>{feature.subTitle}</p>
             </div>
           </div>
           <div className="col-md-4 col-sm-4">
             <div className="feature-thumb">
               <span>02</span>
-              <h3>Books & Library</h3>
-              <p>
-                You are allowed to use Known HTML Template for your commercial
-                or non-commercial websites.
-              </p>
+              <h3>{feature.title1}</h3>
+              <p>{feature.subTitle1} </p>
             </div>
           </div>
           <div className="col-md-4 col-sm-4">
             <div className="feature-thumb">
               <span>03</span>
-              <h3>Certified Teachers</h3>
-              <p>
-                Please spread the word about us. Template redistribution is NOT
-                allowed on any download website.
-              </p>
+              <h3>{feature.title2}</h3>
+              <p>{feature.subTitle2}</p>
             </div>
           </div>
         </div>
