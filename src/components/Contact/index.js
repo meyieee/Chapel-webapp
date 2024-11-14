@@ -1,12 +1,16 @@
-import React, { useState } from 'react';
-import { getDatabase, ref, set } from 'firebase/database';
+import { useState, useEffect } from 'react';
+import { getDatabase, ref, set, onValue } from 'firebase/database';
 
 const Contact = () => {
-  // State for form inputs
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     message: ''
+  });
+
+  const [contact, setContact] = useState({
+    title: 'Contact us',  // Default values in case data isn't loaded yet
+    subTitle: 'We love conversations. Let’s talk!'
   });
 
   // Handle form input changes
@@ -24,20 +28,14 @@ const Contact = () => {
 
     const { name, email, message } = formData;
 
-    // Validate input
     if (!name || !email || !message) {
-      alert("Please fill in all fields.");
+      alert('Please fill in all fields.');
       return;
     }
 
     try {
-      // Get a reference to the database
       const db = getDatabase();
-      
-      // Generate a unique ID for each form submission (you could also use a timestamp or UUID)
-      const userId = new Date().getTime(); // You can use something more unique, like UUID
-
-      // Write the data to the Firebase Realtime Database
+      const userId = new Date().getTime(); // Unique ID based on timestamp
       await set(ref(db, 'contact/' + userId), {
         name,
         email,
@@ -45,15 +43,26 @@ const Contact = () => {
         timestamp: new Date().toISOString()
       });
 
-      // Reset form after submission
-      setFormData({ name: '', email: '', message: '' });
-      // Alert user of successful submission
-      alert("Your message has been sent successfully!");
+      setFormData({ name: '', email: '', message: '' }); // Reset form after submission
+      alert('Your message has been sent successfully!');
     } catch (error) {
-      console.error("Error writing to Firebase:", error);
-      alert("There was an error sending your message. Please try again.");
+      console.error('Error writing to Firebase:', error);
+      alert('There was an error sending your message. Please try again.');
     }
   };
+
+  // Fetch contact data from Firebase on component mount
+  useEffect(() => {
+    const db = getDatabase();
+    const contactRef = ref(db, 'contact/');
+
+    onValue(contactRef, (snapshot) => {
+      const data = snapshot.val();
+      if (data) {
+        setContact(data);  // Update state with fetched contact data
+      }
+    });
+  }, []);
 
   return (
     <section id="contact">
@@ -63,7 +72,7 @@ const Contact = () => {
             <form id="contact-form" role="form" onSubmit={handleSubmit}>
               <div className="section-title">
                 <h2>
-                  Contact us <small>We love conversations. Let’s talk!</small>
+                  {contact.title} <small>{contact.subTitle}</small>
                 </h2>
               </div>
               <div className="col-md-12 col-sm-12">
