@@ -2,12 +2,14 @@ import Header from "./components/Header/index";
 import Footer from "./components/Footer/index";
 import Contact from "./components/Contact";
 import Feature from "./components/Feature";
+import Home from "./components/Home";
 import "./Assets/css/style.css";
 
 const App = () => {
   return (
     <div>
       <Header />
+      <Home />
       <Feature />
       {/* ABOUT */}
       <section id="about">

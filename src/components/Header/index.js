@@ -1,86 +1,49 @@
-import { getDatabase, ref, onValue } from "firebase/database";
+import { ref, onValue } from "@firebase/database";
 import { useEffect, useState } from "react";
+import { database } from '../../config/FIrebase';
+import logo from '../../Assets/image/logoastuf.png';
 
 const Header = () => {
-  const [header, setHeader] = useState([]);
+  const defaultLinks = [
+    { title: 'Home', href: '#home' },
+    { title: 'About', href: '#about' },
+    { title: 'Contact', href: '#contact' }
+  ];
+
+  const [header, setHeader] = useState({
+    links: defaultLinks
+  });
 
   useEffect(() => {
-    const db = getDatabase();
-    const headerRef = ref(db, "header/");
-
-    onValue(headerRef, (snapshot) => {
+    const headerRef = ref(database, "header");
+    const unsubscribe = onValue(headerRef, (snapshot) => {
       const data = snapshot.val();
-      setHeader(data);
+      if (data && data.links) {
+        setHeader(data);
+      }
     });
+
+    return () => unsubscribe();
   }, []);
 
   return (
-    <section
-      className="navbar custom-navbar navbar-fixed-top"
-      role="navigation"
-    >
-      <div className="container">
-        <div
-          className="navbar-header"
-          style={{
-            display: "flex",
-            alignItems: "center",
-            border: "none", // Menghilangkan garis pada elemen header
-          }}
-        >
-          <button
-            className="navbar-toggle"
-            data-toggle="collapse"
-            data-target=".navbar-collapse"
-            style={{ border: "none", outline: "none" }} // Menghilangkan garis pada tombol
-          >
-            <span className="icon icon-bar" />
-            <span className="icon icon-bar" />
-            <span className="icon icon-bar" />
-          </button>
-          <a href="#" className="navbar-brand">
-            <img
-              src={`data:image/jpeg;base64, ${header.image}`}
-              alt="Logo"
-              style={{
-                width: "40px", // Ukuran logo
-                height: "40px",
-                objectFit: "cover",
-                marginRight: "10px", // Jarak antar logo dan teks
-                border: "none", // Menghilangkan garis pada logo
-                outline: "none", // Menghilangkan garis luar logo
-              }}
-            />
-          </a>
-        </div>
-        <div className="collapse navbar-collapse">
-          <ul className="nav navbar-nav navbar-nav-first">
-            <li>
-              <a href="#top" className="smoothScroll">
-                {header.title}
-              </a>
-            </li>
-            <li>
-              <a href="#about" className="smoothScroll">
-                {header.title1}
-              </a>
-            </li>
-
-            <li>
-              <a href="#courses" className="smoothScroll">
-                {header.title2}
-              </a>
-            </li>
-
-            <li>
-              <a href="#contact" className="smoothScroll">
-                {header.title3}
-              </a>
-            </li>
-          </ul>
-        </div>
+    <header className="header">
+      <div className="header-logo">
+        <img src={logo} alt="Astuf Logo" />
       </div>
-    </section>
+      
+      <nav className="header-nav">
+        {(header.links || defaultLinks).map((link, index) => (
+          <a 
+            key={index} 
+            href={link.href} 
+            className="nav-link"
+          >
+            {link.title}
+          </a>
+        ))}
+      </nav>
+    </header>
   );
 };
 

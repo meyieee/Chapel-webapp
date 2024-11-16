@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
-import { getDatabase, ref, set, onValue } from 'firebase/database';
+import { ref, set, onValue } from '@firebase/database';
+import { database } from '../../config/FIrebase';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -9,8 +10,8 @@ const Contact = () => {
   });
 
   const [contact, setContact] = useState({
-    title: 'Contact us',  // Default values in case data isn't loaded yet
-    subTitle: 'We love conversations. Let’s talk!'
+    title: 'Contact us',
+    subTitle: 'We love conversations. Lets talk!'
   });
 
   // Handle form input changes
@@ -29,39 +30,43 @@ const Contact = () => {
     const { name, email, message } = formData;
 
     if (!name || !email || !message) {
-      alert('Please fill in all fields.');
+      alert('Please fill in all fields');
       return;
     }
 
     try {
-      const db = getDatabase();
-      const userId = new Date().getTime(); // Unique ID based on timestamp
-      await set(ref(db, 'contact/' + userId), {
+      const newMessageRef = ref(database, `messages/${Date.now()}`);
+      await set(newMessageRef, {
         name,
         email,
         message,
-        timestamp: new Date().toISOString()
+        timestamp: Date.now()
       });
 
-      setFormData({ name: '', email: '', message: '' }); // Reset form after submission
-      alert('Your message has been sent successfully!');
+      setFormData({
+        name: '',
+        email: '',
+        message: ''
+      });
+
+      alert('Message sent successfully!');
     } catch (error) {
-      console.error('Error writing to Firebase:', error);
-      alert('There was an error sending your message. Please try again.');
+      console.error('Error sending message:', error);
+      alert('Failed to send message. Please try again.');
     }
   };
 
-  // Fetch contact data from Firebase on component mount
   useEffect(() => {
-    const db = getDatabase();
-    const contactRef = ref(db, 'contact/');
-
-    onValue(contactRef, (snapshot) => {
+    const contactRef = ref(database, 'contact');
+    const unsubscribe = onValue(contactRef, (snapshot) => {
       const data = snapshot.val();
       if (data) {
-        setContact(data);  // Update state with fetched contact data
+        setContact(data);
       }
     });
+
+    // Cleanup subscription on unmount
+    return () => unsubscribe();
   }, []);
 
   return (
@@ -71,10 +76,9 @@ const Contact = () => {
           <div className="col-md-6 col-sm-12">
             <form id="contact-form" role="form" onSubmit={handleSubmit}>
               <div className="section-title">
-                <h2>
-                  {contact.title} <small>{contact.subTitle}</small>
-                </h2>
+                <h2>{contact.title} <small>{contact.subTitle}</small></h2>
               </div>
+
               <div className="col-md-12 col-sm-12">
                 <input
                   type="text"
@@ -83,8 +87,8 @@ const Contact = () => {
                   name="name"
                   value={formData.name}
                   onChange={handleInputChange}
-                  required
                 />
+                
                 <input
                   type="email"
                   className="form-control"
@@ -92,29 +96,27 @@ const Contact = () => {
                   name="email"
                   value={formData.email}
                   onChange={handleInputChange}
-                  required
                 />
+
                 <textarea
                   className="form-control"
-                  rows={6}
+                  rows="6"
                   placeholder="Tell us about your message"
                   name="message"
                   value={formData.message}
                   onChange={handleInputChange}
-                  required
                 />
-                <button type="submit" className="btn btn-primary mt-3">
-                  Send Message
-                </button>
+              </div>
+
+              <div className="col-md-4 col-sm-12">
+                <input
+                  type="submit"
+                  className="form-control"
+                  name="submit"
+                  value="Send Message"
+                />
               </div>
             </form>
-          </div>
-          <div className="contact-image">
-            <img
-              src="images/contact-image.jpg"
-              className="img-responsive"
-              alt="Smiling Two Girls"
-            />
           </div>
         </div>
       </div>
