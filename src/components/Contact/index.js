@@ -1,17 +1,17 @@
-import { useState, useEffect } from 'react';
-import { ref, set, onValue } from '@firebase/database';
-import { database } from '../../config/FIrebase';
+import { useState, useEffect } from "react";
+import { ref, set, onValue } from "@firebase/database";
+import { database } from "../../config/Firebase";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: ''
+    name: "",
+    email: "",
+    message: "",
   });
 
   const [contact, setContact] = useState({
-    title: 'Contact us',
-    subTitle: 'We love conversations. Lets talk!'
+    title: "Contact us",
+    subTitle: "We love conversations. Lets talk!",
   });
 
   // Handle form input changes
@@ -19,7 +19,7 @@ const Contact = () => {
     const { name, value } = e.target;
     setFormData({
       ...formData,
-      [name]: value
+      [name]: value,
     });
   };
 
@@ -30,7 +30,7 @@ const Contact = () => {
     const { name, email, message } = formData;
 
     if (!name || !email || !message) {
-      alert('Please fill in all fields');
+      alert("Please fill in all fields");
       return;
     }
 
@@ -40,24 +40,24 @@ const Contact = () => {
         name,
         email,
         message,
-        timestamp: Date.now()
+        timestamp: Date.now(),
       });
 
       setFormData({
-        name: '',
-        email: '',
-        message: ''
+        name: "",
+        email: "",
+        message: "",
       });
 
-      alert('Message sent successfully!');
+      alert("Message sent successfully!");
     } catch (error) {
-      console.error('Error sending message:', error);
-      alert('Failed to send message. Please try again.');
+      console.error("Error sending message:", error);
+      alert("Failed to send message. Please try again.");
     }
   };
 
   useEffect(() => {
-    const contactRef = ref(database, 'contact');
+    const contactRef = ref(database, "contact");
     const unsubscribe = onValue(contactRef, (snapshot) => {
       const data = snapshot.val();
       if (data) {
@@ -76,7 +76,9 @@ const Contact = () => {
           <div className="col-md-6 col-sm-12">
             <form id="contact-form" role="form" onSubmit={handleSubmit}>
               <div className="section-title">
-                <h2>{contact.title} <small>{contact.subTitle}</small></h2>
+                <h2>
+                  {contact.title} <small>{contact.subTitle}</small>
+                </h2>
               </div>
 
               <div className="col-md-12 col-sm-12">
@@ -88,7 +90,7 @@ const Contact = () => {
                   value={formData.name}
                   onChange={handleInputChange}
                 />
-                
+
                 <input
                   type="email"
                   className="form-control"
