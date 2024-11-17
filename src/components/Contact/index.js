@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { ref, set, onValue } from "@firebase/database";
+import { ref, set, onValue, remove } from "@firebase/database";
 import { database } from "../../config/Firebase";
 
 const Contact = () => {
@@ -13,6 +13,8 @@ const Contact = () => {
     title: "Contact us",
     subTitle: "We love conversations. Lets talk!",
   });
+
+  const [suggestions, setSuggestions] = useState([]);
 
   // Handle form input changes
   const handleInputChange = (e) => {
@@ -65,9 +67,47 @@ const Contact = () => {
       }
     });
 
-    // Cleanup subscription on unmount
-    return () => unsubscribe();
+    // Listen to messages in Firebase
+    const messagesRef = ref(database, "messages");
+    const unsubscribeMessages = onValue(messagesRef, (snapshot) => {
+      const data = snapshot.val();
+      const messageList = data
+        ? Object.keys(data).map((key) => ({
+            id: key,
+            ...data[key],
+          }))
+        : [];
+      setSuggestions(messageList);
+    });
+
+    // Cleanup subscriptions on unmount
+    return () => {
+      unsubscribe();
+      unsubscribeMessages();
+    };
   }, []);
+
+  // Function to mask email
+  const maskEmail = (email) => {
+    const [localPart, domain] = email.split("@");
+    const visiblePart = localPart.slice(0, 3); // Show first 3 characters
+    return `${visiblePart}***@${domain}`;
+  };
+
+  // Function to delete a message
+  const handleDelete = async (id) => {
+    if (window.confirm("Are you sure you want to delete this message?")) {
+      try {
+        const messageRef = ref(database, `messages/${id}`);
+        await remove(messageRef); // Remove message from Firebase
+        setSuggestions((prev) => prev.filter((item) => item.id !== id)); // Update UI
+        alert("Message deleted successfully.");
+      } catch (error) {
+        console.error("Error deleting message:", error);
+        alert("Failed to delete message. Please try again.");
+      }
+    }
+  };
 
   return (
     <section id="contact">
@@ -119,6 +159,38 @@ const Contact = () => {
                 />
               </div>
             </form>
+          </div>
+        </div>
+
+        {/* Suggestion Box */}
+        <div className="row" style={{ marginTop: "40px" }}>
+          <div className="col-md-12">
+            <div className="section-title">
+              <h2>Suggestions from Others</h2>
+            </div>
+            <ul className="suggestion-list">
+              {suggestions.map((suggestion) => (
+                <li key={suggestion.id} className="suggestion-item">
+                  <strong>{suggestion.name}:</strong> {suggestion.message}
+                  <br />
+                  <small>Email: {maskEmail(suggestion.email)}</small>
+                  <button
+                    onClick={() => handleDelete(suggestion.id)}
+                    className="btn btn-danger"
+                    style={{
+                      marginLeft: "10px",
+                      backgroundColor: "red",
+                      color: "white",
+                      border: "none",
+                      padding: "5px 10px",
+                      cursor: "pointer",
+                    }}
+                  >
+                    Delete
+                  </button>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       </div>

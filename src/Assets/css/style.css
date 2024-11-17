@@ -586,3 +586,62 @@ footer .newsletter-form input[type="submit"]:hover {
     margin: 0 auto;
   }
 }
+.suggestion-list {
+  list-style: none;
+  padding: 0;
+  margin: 20px 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.suggestion-item {
+  background-color: #1a1f2e;
+  color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  width: 100%;
+  max-width: 300px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.suggestion-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.suggestion-item strong {
+  font-size: 18px;
+  color: #ffda79;
+  margin-bottom: 10px;
+}
+
+.suggestion-item small {
+  font-size: 14px;
+  color: #9fa6b2;
+  margin-top: 5px;
+  display: block;
+}
+
+.suggestion-item button {
+  margin-top: 15px;
+  padding: 8px 15px;
+  border: none;
+  border-radius: 5px;
+  background-color: #e63946;
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  align-self: flex-start;
+  transition: background-color 0.2s;
+}
+
+.suggestion-item button:hover {
+  background-color: #d62828;
+}
