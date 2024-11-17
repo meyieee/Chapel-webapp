@@ -32,7 +32,9 @@ body {
   transform: translateX(-50%);
   z-index: 1000;
 }
-
+section {
+  scroll-margin-top: 70px; /* Atur jarak dari header jika sticky */
+}
 
 .header-logo {
   display: flex;
@@ -41,14 +43,13 @@ body {
 
 .header-logo img {
   height: 115px;
-  width: 14
-  0px;
+  width: 14 0px;
 }
 
 .header-nav {
   display: flex;
   align-items: center;
-  margin:20px;
+  margin: 20px;
   gap: 60px;
 }
 
@@ -69,7 +70,8 @@ body {
 
 /* Home Section Styles */
 .main-home {
-  background: url('../../Assets/image/backgroundhome.jpg') no-repeat center center;
+  background: url("../../Assets/image/backgroundhome.jpg") no-repeat center
+    center;
   background-size: cover;
   background-attachment: fixed;
   width: 1320px;
@@ -80,7 +82,6 @@ body {
   margin: 120px auto 0; /* Added top margin to create space below header */
   overflow: hidden;
 }
-
 
 .main-home .overlay {
   background: rgba(0, 0, 0, 0.7);
@@ -146,7 +147,7 @@ body {
   .header-nav {
     gap: 16px;
   }
-  
+
   .nav-link {
     font-size: 14px;
   }
@@ -383,7 +384,7 @@ footer .newsletter-form input[type="submit"]:hover {
 
 /* Success message styles */
 .success-message {
-  background: #4CAF50;
+  background: #4caf50;
   color: white;
   padding: 15px;
   border-radius: 5px;
@@ -438,7 +439,7 @@ footer .footer-info h2 {
 }
 
 footer .footer-info h2:after {
-  content: '';
+  content: "";
   position: absolute;
   left: 0;
   bottom: 0;
