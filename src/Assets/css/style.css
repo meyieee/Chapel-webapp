@@ -44,6 +44,19 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 0 40px;
+  padding-bottom: 10px;
+  margin: 0 auto;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+}
+section {
+  scroll-margin-top: 70px; /* Atur jarak dari header jika sticky */
+}
   padding: 0 20px;
 }
 
@@ -53,6 +66,8 @@ body {
 }
 
 .header-logo img {
+  height: 115px;
+  width: 14 0px;
   height: 140px;
   width: auto;
   transition: transform 0.3s ease;
@@ -66,6 +81,8 @@ body {
   display: flex;
   gap: 30px;
   align-items: center;
+  margin: 20px;
+  gap: 60px;
 }
 
 .nav-link {
@@ -121,6 +138,8 @@ body {
 }
 /* Home Section Styles */
 .main-home {
+  background: url("../../Assets/image/backgroundhome.jpg") no-repeat center
+    center;
   min-height: 100vh;
   background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.4)),
               url('../../Assets/image/backgroundhome.jpg') no-repeat center center;
@@ -131,6 +150,9 @@ body {
   padding: 120px 0 60px;
   overflow: hidden;
 }
+
+.main-home .overlay {
+  background: rgba(0, 0, 0, 0.7);
 
 .main-home::before {
   content: '';
@@ -295,6 +317,9 @@ body {
     gap: 30px;
     padding: 20px;
   }
+
+  .nav-link {
+    font-size: 14px;
 
   .stat-number {
     font-size: 2.5rem;
@@ -605,7 +630,7 @@ footer .newsletter-form input[type="submit"]:hover {
 
 /* Success message styles */
 .success-message {
-  background: #4CAF50;
+  background: #4caf50;
   color: white;
   padding: 15px;
   border-radius: 5px;
@@ -660,7 +685,7 @@ footer .footer-info h2 {
 }
 
 footer .footer-info h2:after {
-  content: '';
+  content: "";
   position: absolute;
   left: 0;
   bottom: 0;
@@ -805,5 +830,115 @@ footer .newsletter-form input[type="submit"]:hover {
   footer .newsletter-form {
     max-width: 400px;
     margin: 0 auto;
+  }
+}
+.flash-message {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  color: #333;
+  padding: 20px 30px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  z-index: 1000;
+  text-align: center;
+  font-size: 16px;
+}
+
+.flash-message.success {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.flash-message.error {
+  background-color: #f8d7da;
+  color: #721c24;
+}
+/* Styling the suggestion box container */
+.suggestion-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px; /* Space between items */
+  padding: 20px;
+  margin: 0;
+  background-color: #f0f4f8;
+  border-radius: 12px;
+  border: 1px solid #ddd;
+  max-width: 100%;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  font-family: "Arial", sans-serif;
+}
+
+/* Styling each suggestion item */
+.suggestion-item {
+  width: calc(33.33% - 20px); /* 3 items per row with spacing */
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  border: 1px solid #ddd;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  margin-bottom: 20px;
+  box-sizing: border-box;
+}
+
+/* Hover effect for each suggestion */
+.suggestion-item:hover {
+  background-color: #f7f7f7;
+  transform: translateY(-3px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+/* Styling the email and name */
+.suggestion-item strong {
+  font-size: 1.1em;
+  color: #333;
+}
+
+.suggestion-item small {
+  color: #888;
+  font-size: 0.9em;
+}
+
+/* Styling for the 'Delete' button */
+.suggestion-item button {
+  margin-left: 15px;
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  cursor: pointer;
+  border-radius: 25px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  font-size: 0.9em;
+  font-weight: bold;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Hover effect for delete button */
+.suggestion-item button:hover {
+  background-color: #c0392b;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Remove the border from the last item */
+.suggestion-item:last-child {
+  border-bottom: none;
+}
+
+/* Responsive layout */
+@media (max-width: 768px) {
+  .suggestion-item {
+    width: calc(50% - 20px); /* 2 items per row for smaller screens */
+  }
+}
+
+@media (max-width: 480px) {
+  .suggestion-item {
+    width: 100%; /* 1 item per row for mobile screens */
   }
 }

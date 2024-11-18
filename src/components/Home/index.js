@@ -1,7 +1,7 @@
 import React from "react";
-import { ref, onValue } from '@firebase/database';
-import { database } from '../../config/FIrebase';
-import { useState, useEffect } from 'react';
+import { ref, onValue } from "@firebase/database";
+import { database } from "../../config/FIrebase/index";
+import { useState, useEffect } from "react";
 
 const Home = () => {
   const [homeContent, setHomeContent] = useState({
@@ -33,7 +33,7 @@ const Home = () => {
     }
   ];
   useEffect(() => {
-    const homeRef = ref(database, 'home');
+    const homeRef = ref(database, "home");
     const unsubscribe = onValue(homeRef, (snapshot) => {
       const data = snapshot.val();
       if (data) {
