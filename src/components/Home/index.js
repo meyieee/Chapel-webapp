@@ -1,6 +1,6 @@
 import React from "react";
 import { ref, onValue } from "@firebase/database";
-import { database } from "../../config/Firebase/index";
+import { database } from "../../config/FIrebase/index";
 import { useState, useEffect } from "react";
 
 const Home = () => {

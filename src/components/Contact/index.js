@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { ref, set, onValue, remove } from "@firebase/database";
-import { database } from "../../config/Firebase";
+import { database } from "../../config/FIrebase";
 
 const Contact = () => {
   const [formData, setFormData] = useState({

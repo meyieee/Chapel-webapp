@@ -1,6 +1,6 @@
 import { ref, onValue } from "@firebase/database";
 import { useEffect, useState } from "react";
-import { database } from "../../config/Firebase/index";
+import { database } from "../../config/FIrebase/index";
 import logo from "../../Assets/image/logoastuf.png";
 
 const Header = () => {

@@ -10,7 +10,7 @@ const firebaseConfig = {
   storageBucket: "chapel-webapp.firebasestorage.app",
   messagingSenderId: "80265693665",
   appId: "1:80265693665:web:fb172fbcd40f32e94feaa0",
-  databaseURL: "https://chapel-webapp-default-rtdb.firebaseio.com"
+  databaseURL: "https://chapel-webapp-default-rtdb.firebaseio.com",
 };
 
 // Initialize Firebase
