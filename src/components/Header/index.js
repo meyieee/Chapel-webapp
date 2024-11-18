@@ -28,21 +28,23 @@ const Header = () => {
 
   return (
     <header className="header">
-      <div className="header-logo">
-        <img src={logo} alt="Astuf Logo" />
+      <div className="header-container">
+        <div className="header-logo">
+          <img src={logo} alt="Astuf Logo" />
+        </div>
+        
+        <nav className="header-nav">
+          {(header.links || defaultLinks).map((link, index) => (
+            <a 
+              key={index} 
+              href={link.href} 
+              className="nav-link"
+            >
+              {link.title}
+            </a>
+          ))}
+        </nav>
       </div>
-      
-      <nav className="header-nav">
-        {(header.links || defaultLinks).map((link, index) => (
-          <a 
-            key={index} 
-            href={link.href} 
-            className="nav-link"
-          >
-            {link.title}
-          </a>
-        ))}
-      </nav>
     </header>
   );
 };

@@ -38,12 +38,7 @@ const Footer = () => {
                   <a href="#" className="fa fa-instagram" />
                 </li>
               </ul>
-              <div className="copyright-text">
-                <p style={{ marginTop: "20px", fontSize: "14px" }}>
-                  Copyright © {new Date().getFullYear()} YourCompany | All
-                  Rights Reserved
-                </p>
-              </div>
+              
             </div>
           </div>
           <div className="col-md-4 col-sm-6">
@@ -72,6 +67,12 @@ const Footer = () => {
           </div>
           <div className="col-md-4 col-sm-12">
             <div className="footer-info newsletter-form"></div>
+          </div>
+          <div className="copyright-text">
+                <p style={{ marginTop: "20px", fontSize: "14px" }}>
+                  Copyright © {new Date().getFullYear()} YourCompany | All
+                  Rights Reserved
+                </p>
           </div>
         </div>
       </div>
