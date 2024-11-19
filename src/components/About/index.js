@@ -45,12 +45,16 @@ const About = () =>{
                 <p>Team Leader</p>
               </div>
               <div className="team-member">
+              <a href="https://portofolio-dun-zeta.vercel.app/" target="_blank" rel="noopener noreferrer"> 
                 <img src={`data:image/jpeg;base64, ${about.image3}`} alt="Team Member 2" />
+             </a>
                 <h3>Aprillia Mononutu</h3>
                 <p>UI/UX Designer</p>
               </div>
               <div className="team-member">
-                <img src={`data:image/jpeg;base64, ${about.image4}`}alt="Team Member 3" />
+              <a href="https://meilyan-portofolio.vercel.app/" target="_blank" rel="noopener noreferrer">
+                <img src={`data:image/jpeg;base64, ${about.image4}`} alt="Team Member 3" />
+                </a>
                 <h3>Meilyan</h3>
                 <p>Backend Developer</p>
               </div>
