@@ -1,5 +1,6 @@
 import { getDatabase, ref, onValue } from "firebase/database";
 import { useEffect, useState } from "react";
+import Slider from "react-slick"; // Import Slider component from react-slick
 
 const Feature = () => {
   const [feature, setFeature] = useState([]);
@@ -20,29 +21,44 @@ const Feature = () => {
     });
   }, []);
 
+  // Slick slider settings
+  const settings = {
+    dots: true, // Show navigation dots
+    infinite: true,
+    speed: 300, // Faster transition (300ms)
+    slidesToShow: 1, // Show 1 slide at a time
+    slidesToScroll: 1,
+    autoplay: true, // Enable autoplay
+    autoplaySpeed: 3000, // Auto-slide every 3 seconds
+    arrows: false, // Disable arrows, only dots for navigation
+    centerMode: false, // No centering mode, images stay aligned left
+    cssEase: "ease-in-out", // Smooth transition easing for the sliding
+  };
+
   return (
     <section id="feature">
       <div className="container">
         <div className="row">
-          {/* Feature 1 with 3 images in horizontal layout */}
+          {/* Feature 1 with slider for images */}
           <div className="col-md-12">
             <div className="feature-thumb">
-              <span>01</span>
               <h3>{feature.title}</h3>
               <p>{feature.subTitle}</p>
 
-              {/* Images displayed horizontally */}
+              {/* Carousel for images */}
               <div className="feature-images">
                 {imageUrls.length > 0 ? (
-                  imageUrls.map((url, index) => (
-                    <div className="feature-image" key={index}>
-                      <img
-                        src={`data:image/jpeg;base64,${url}`} // Menampilkan gambar dalam format base64
-                        alt={`Feature ${index + 1}`}
-                        className="img-fluid"
-                      />
-                    </div>
-                  ))
+                  <Slider {...settings}>
+                    {imageUrls.map((url, index) => (
+                      <div className="feature-image" key={index}>
+                        <img
+                          src={`data:image/jpeg;base64,${url}`} // Menampilkan gambar dalam format base64
+                          alt={`Feature ${index + 1}`}
+                          className="img-fluid" // Apply the class to make it responsive
+                        />
+                      </div>
+                    ))}
+                  </Slider>
                 ) : (
                   <p>Loading images...</p>
                 )}
