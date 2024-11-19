@@ -205,6 +205,79 @@ section {
 .about-info figcaption p {
   color: #666;
 }
+.about-section {
+  padding: 40px 20px;
+  background-color: #f4f4f4;
+}
+
+.stats-container {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+}
+
+.stat-item {
+  text-align: center;
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 150px;
+}
+
+.stat-item h3 {
+  font-size: 2rem;
+  color: #007bff;
+}
+
+.stat-item p {
+  margin-top: 10px;
+  font-size: 1rem;
+  color: #555555;
+}
+
+.team-section {
+  margin-top: 40px;
+  text-align: center;
+}
+
+.team-section h2 {
+  margin-bottom: 20px;
+  font-size: 2rem;
+  color: #333333;
+}
+
+.team-container {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.team-member {
+  text-align: center;
+  width: 200px;
+}
+
+.team-member img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 50%;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.team-member h3 {
+  margin-top: 10px;
+  font-size: 1.2rem;
+  color: #007bff;
+}
+
+.team-member p {
+  font-size: 1rem;
+  color: #555555;
+}
+
 
 /* Footer Styles */
 footer {

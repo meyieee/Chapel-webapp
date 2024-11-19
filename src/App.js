@@ -5,6 +5,7 @@ import Contact from "./components/Contact";
 import Feature from "./components/Feature";
 import Home from "./components/Home";
 import "./Assets/css/style.css";
+import About from './components/About';
 
 const App = () => {
   return (
@@ -13,21 +14,12 @@ const App = () => {
       <main className="main-content">
         <Home />
         <Feature />
-        <section id="about" className="about-section">
-          <div className="container">
-            <h2>About Us</h2>
-            <p>
-              Welcome to our Computer Science student forum. A place where CS students can connect,
-              collaborate, and help each other excel in their programming journey.
-            </p>
-          </div>
-        </section>
+        <About/>
         <Contact />
       </main>
       <Footer />
     </div>
   );
 };
-
 
 export default App;
