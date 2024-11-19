@@ -50,12 +50,15 @@ const About = () =>{
                 <p>UI/UX Designer</p>
               </div>
               <div className="team-member">
-                <img src="/assets/images/team3.jpg" alt="Team Member 3" />
+                <img src={`data:image/jpeg;base64, ${about.image4}`}alt="Team Member 3" />
                 <h3>Meilyan</h3>
                 <p>Backend Developer</p>
               </div>
               <div className="team-member">
+                
+                <a href="https://myweb-two-delta.vercel.app/" target="_blank" rel="noopener noreferrer">
                 <img src={`data:image/jpeg;base64, ${about.image1}`} alt="Team Member 4" />
+                </a>
                 <h3>Cantika</h3>
                 <p>Frontend Developer</p>
               </div>
