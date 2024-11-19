@@ -818,3 +818,61 @@ footer .newsletter-form input[type="submit"]:hover {
   background-color: #a93226;
   transform: translateY(1px);
 }
+
+/* Styling for Feature 1 */
+.feature-thumb {
+  position: relative;
+  overflow: hidden;
+  border: 3px solid #ddd; /* Border around the feature */
+  border-radius: 10px; /* Optional: Rounded corners for feature box */
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1); /* Optional: Shadow for the feature box */
+  padding: 20px;
+  background-color: #fff; /* Background color for feature box */
+  margin-bottom: 20px; /* Space between feature boxes */
+}
+
+/* Styling for images inside Feature 1 */
+.feature-images {
+  display: flex;
+  justify-content: space-between; /* Distribute images horizontally */
+  gap: 15px; /* Space between images */
+  margin-top: 20px; /* Space above images */
+}
+
+.feature-image {
+  flex: 1;
+  overflow: hidden; /* Hide overflow to ensure image fits within the container */
+  border-radius: 5px; /* Optional: Rounded corners for each image */
+}
+
+.feature-image img {
+  width: 100%; /* Ensure images fill the width of their container */
+  height: auto; /* Maintain aspect ratio */
+  object-fit: cover; /* Ensures the image fills its container without distortion */
+}
+
+/* Optional: Styling for feature heading */
+.feature-thumb h3 {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.feature-thumb p {
+  font-size: 16px;
+  color: #555;
+}
+
+/* Optional: Add spacing around the whole feature section */
+#feature {
+  padding: 50px 0; /* Adjust top/bottom padding of the feature section */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  /* Stack images vertically on smaller screens */
+  .feature-images {
+    flex-direction: column;
+    gap: 10px; /* Reduce space between images */
+  }
+}
