@@ -1,13 +1,13 @@
 import { ref, onValue } from "@firebase/database";
 import { useEffect, useState } from "react";
-import { database } from "../../config/FIrebase/index";
-import logo from "../../Assets/image/logoastuf.png";
+import { database } from '../../config/FIrebase';
+import logo from '../../Assets/image/logoastuf.png';
 
 const Header = () => {
   const defaultLinks = [
-    { title: "Home", href: "#home" },
-    { title: "About", href: "#about" },
-    { title: "Contact", href: "#contact" },
+    { title: 'Home', href: '#home' },
+    { title: 'About', href: '#about' },
+    { title: 'Contact', href: '#contact' }
   ];
 
   const [header, setHeader] = useState({
@@ -39,39 +39,20 @@ const Header = () => {
       <div className="header-logo">
         <img src={logo} alt="Astuf Logo" />
       </div>
-
+      
       <nav className="header-nav">
         {(header.links || defaultLinks).map((link, index) => (
-          <a
-            key={index}
-            href={link.href}
+          <a 
+            key={index} 
+            href={link.href} 
             className="nav-link"
-            onClick={(e) => handleSmoothScroll(e, link.href)}
           >
             {link.title}
           </a>
         ))}
       </nav>
-      <div className="header-container">
-        <div className="header-logo">
-          <img src={logo} alt="Astuf Logo" />
-        </div>
-        
-        <nav className="header-nav">
-          {(header.links || defaultLinks).map((link, index) => (
-            <a 
-              key={index} 
-              href={link.href} 
-              className="nav-link"
-            >
-              {link.title}
-            </a>
-          ))}
-        </nav>
-      </div>
     </header>
   );
 };
 
 export default Header;
-

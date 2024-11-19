@@ -10,13 +10,12 @@ const Contact = () => {
   });
 
   const [contact, setContact] = useState({
-    title: "Contact us",
-    subTitle: "We love conversations. Let's talk!",
+    title: "Contact Us",
+    subTitle: "Have questions? We'd love to hear from you.",
   });
 
   const [suggestions, setSuggestions] = useState([]);
   const [flashMessage, setFlashMessage] = useState({ message: "", type: "" });
-
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData({
@@ -24,7 +23,6 @@ const Contact = () => {
       [name]: value,
     });
   };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     const { name, email, message } = formData;
@@ -53,7 +51,6 @@ const Contact = () => {
         message: "Message sent successfully!",
         type: "success",
       });
-
       setTimeout(() => setFlashMessage({ message: "", type: "" }), 3000);
     } catch (error) {
       console.error("Error sending message:", error);
@@ -69,7 +66,6 @@ const Contact = () => {
         setContact(data);
       }
     });
-
     const messagesRef = ref(database, "messages");
     const unsubscribeMessages = onValue(messagesRef, (snapshot) => {
       const data = snapshot.val();
@@ -81,7 +77,6 @@ const Contact = () => {
         : [];
       setSuggestions(messageList);
     });
-
     return () => {
       unsubscribe();
       unsubscribeMessages();
@@ -93,20 +88,16 @@ const Contact = () => {
     const visiblePart = localPart.slice(0, 3);
     return `${visiblePart}***@${domain}`;
   };
-
   const handleDelete = async (id) => {
     if (window.confirm("Are you sure you want to delete this message?")) {
       try {
         const messageRef = ref(database, `messages/${id}`);
         await remove(messageRef);
-
         setSuggestions((prev) => prev.filter((item) => item.id !== id));
-
         setFlashMessage({
           message: "Message deleted successfully!",
           type: "error",
         });
-
         setTimeout(() => setFlashMessage({ message: "", type: "" }), 3000);
       } catch (error) {
         console.error("Error deleting message:", error);
@@ -114,7 +105,6 @@ const Contact = () => {
       }
     }
   };
-
   return (
     <section id="contact">
       <div className="container">
@@ -123,7 +113,6 @@ const Contact = () => {
             {flashMessage.message}
           </div>
         )}
-
         <div className="row">
           <div className="col-md-6 col-sm-12">
             <form id="contact-form" role="form" onSubmit={handleSubmit}>
@@ -173,7 +162,6 @@ const Contact = () => {
             </form>
           </div>
         </div>
-
         <div className="row" style={{ marginTop: "40px" }}>
           <div className="col-md-12">
             <div className="section-title">
