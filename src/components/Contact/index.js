@@ -91,12 +91,7 @@ const Contact = () => {
     };
   }, []);
 
-  // Mask email for display
-  const maskEmail = (email) => {
-    const [localPart, domain] = email.split("@");
-    const visiblePart = localPart.slice(0, 3);
-    return `${visiblePart}***@${domain}`;
-  };
+
 
   // Handle suggestion delete with animation
   const handleDelete = async (id) => {
@@ -127,7 +122,7 @@ const Contact = () => {
         console.error("Error deleting message:", error);
         alert("Failed to delete message. Please try again.");
       }
-    }, 500); // Wait for the fade-out animation duration (500ms)
+    }, 500); 
   };
 
   return (
@@ -203,7 +198,6 @@ const Contact = () => {
                 >
                   <strong>{suggestion.name}:</strong> {suggestion.message}
                   <br />
-                  <small>Email: {maskEmail(suggestion.email)}</small>
                   <button
                     onClick={() => handleDelete(suggestion.id)}
                     className="btn btn-danger"
