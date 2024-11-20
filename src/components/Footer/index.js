@@ -19,12 +19,12 @@ const Footer = () => {
           <div className="col-md-4 col-sm-6">
             <div className="footer-info">
               <div className="section-title">
-                <h2>Chapel</h2>
+                <h2>Chapel FILKOM</h2>
               </div>
               <address>
                 <p>
-                  1800 dapibus a tortor pretium, <br /> Integer nisl dui, ABC
-                  12000
+                  come and join our filkom student forum to get new insight about usefull material that's definitely <br /> gonna be a help for you. 
+                  see you thare :)
                 </p>
               </address>
               <ul className="social-icon">
