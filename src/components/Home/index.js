@@ -3,14 +3,13 @@ import { ref, onValue } from "@firebase/database";
 import { database } from "../../config/FIrebase/index";
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-
 const Home = () => {
   const [homeContent, setHomeContent] = useState({
-    title: "YOUR OPINION MATTERS"
+    title: "YOUR OPINION MATTERS",
+    subtitle: "Welcome to our computer science student forum evaluation"
   });
   
   
-
   useEffect(() => {
     const homeRef = ref(database, "home");
     const unsubscribe = onValue(homeRef, (snapshot) => {
@@ -34,9 +33,15 @@ const Home = () => {
           {homeContent.title}
         </motion.h1>
         
-       
-        </div>
+        <motion.h2
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1.2, ease: "easeOut", delay: 0.3 }}
+        >
+          {homeContent.subtitle}
+        </motion.h2>
       </div>
+    </div>
   );
 };
 

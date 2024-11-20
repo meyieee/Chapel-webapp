@@ -19,7 +19,7 @@ const Footer = () => {
           <div className="col-md-4 col-sm-6">
             <div className="footer-info">
               <div className="section-title">
-                <h2>Chapel FILKOM</h2>
+                <h2>STUDENT FORUM FILKOM</h2>
               </div>
               <address>
                 <p>
@@ -35,7 +35,7 @@ const Footer = () => {
                   <a href="#" className="fa fa-twitter" />
                 </li>
                 <li>
-                  <a href="#" className="fa fa-instagram" />
+                  <a href="https://www.instagram.com/officialfilkomunklab?igsh=MWJhNnR1NHV6eGcwag==" className="fa fa-instagram" />
                 </li>
               </ul>
               
@@ -69,10 +69,6 @@ const Footer = () => {
             <div className="footer-info newsletter-form"></div>
           </div>
           <div className="copyright-text">
-                <p style={{ marginTop: "20px", fontSize: "14px" }}>
-                  Copyright © {new Date().getFullYear()} YourCompany | All
-                  Rights Reserved
-                </p>
           </div>
         </div>
       </div>
