@@ -83,7 +83,7 @@ html {
 }
 
 .nav-link::after {
-  content: '';
+  content: "";
   position: absolute;
   width: 0;
   height: 2px;
@@ -120,19 +120,16 @@ html {
 
 /* Home Section Styles */
 @keyframes glow {
-  0%, 100% {
+  0%,
+  100% {
     text-shadow: 3px 3px 0px rgba(0, 0, 0, 0.4),
-                 6px 6px 15px rgba(241, 193, 26, 0.5),
-                 -1px -1px 0px #f1c11a;
+      6px 6px 15px rgba(241, 193, 26, 0.5), -1px -1px 0px #f1c11a;
   }
   50% {
     text-shadow: 3px 3px 0px rgba(0, 0, 0, 0.4),
-                 6px 6px 25px rgba(241, 193, 26, 0.8),
-                 -1px -1px 0px #f1c11a;
+      6px 6px 25px rgba(241, 193, 26, 0.8), -1px -1px 0px #f1c11a;
   }
 }
-
-
 
 @media (max-width: 768px) {
   .home-content h1 {
@@ -142,7 +139,7 @@ html {
 }
 .main-home {
   background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.7)),
-              url("../../Assets/image/backgroundhome.jpg") no-repeat center center;
+    url("../../Assets/image/backgroundhome.jpg") no-repeat center center;
   background-size: cover;
   background-attachment: fixed;
   width: 1320px;
@@ -238,12 +235,12 @@ html {
     width: 90%;
     min-height: 500px;
   }
-  
+
   .home-content h1 {
     font-size: 4rem;
     letter-spacing: 6px;
   }
-  
+
   .home-content h2 {
     font-size: 1.8rem;
     letter-spacing: 1.5px;
@@ -256,23 +253,21 @@ html {
     min-height: 400px;
     padding: 100px 0;
   }
-  
+
   .home-content h1 {
     font-size: 3rem;
     letter-spacing: 4px;
   }
-  
+
   .home-content h2 {
     font-size: 1.5rem;
     letter-spacing: 1px;
   }
 }
 
-
-
 .home-content h2:before,
 .home-content h2:after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: -10px;
   width: 30%;
@@ -389,9 +384,6 @@ html {
   width: 150px;
 }
 
-
-
-
 .team-section {
   margin-top: 40px;
   text-align: center;
@@ -443,15 +435,12 @@ html {
   color: #333333; /* Warna abu-abu lebih gelap */
 }
 
-
 feature-item:hover {
   transform: translateY(-10px);
   background: rgba(255, 255, 255, 0.15);
   box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
   border-color: #f1c11a;
 }
-
-
 
 /* Footer Styles */
 footer {
@@ -1066,118 +1055,108 @@ footer .newsletter-form input[type="submit"]:hover {
   transform: translateY(1px);
 }
 
-/* Styling for Feature 1 */
-.feature-thumb {
+/* FEATURE */
+.feature-box {
   position: relative;
   overflow: hidden;
-  border: 3px solid #ddd; /* Border around the feature */
-  border-radius: 10px; /* Optional: Rounded corners for feature box */
-  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1); /* Optional: Shadow for the feature box */
+  border: 3px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
   padding: 20px;
-  background-color: #fff; /* Background color for feature box */
-  margin-bottom: 20px; /* Space between feature boxes */
+  background-color: #fff;
+  margin-bottom: 40px;
+  text-align: center;
+  transition: all 0.3s ease-in-out;
 }
 
-/* Styling for images inside Feature 1 */
-.feature-images {
-  width: 100%;
-  position: relative;
-  margin-top: 20px; /* Space above images */
+.feature-box:hover {
+  box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.2);
 }
 
 .feature-image img {
-  width: 100%; /* Ensure images fill the width of their container */
-  max-width: 600px; /* Make images bigger */
-  height: auto; /* Maintain aspect ratio */
-  object-fit: cover; /* Ensures the image fills its container without distortion */
-  margin: 0 auto; /* Center align images in the container */
-  transition: transform 0.3s ease; /* Smooth transition for scaling effect */
-}
-
-/* Optional: Styling for feature heading */
-.feature-thumb h3 {
-  font-size: 24px;
-  font-weight: bold;
-  margin-bottom: 10px;
-}
-
-.feature-thumb p {
-  font-size: 16px;
-  color: #555;
-}
-
-/* Optional: Add spacing around the whole feature section */
-#feature {
-  padding: 50px 0; /* Adjust top/bottom padding of the feature section */
-}
-
-/* Styling for the Slick Slider */
-.slick-slider {
-  position: relative;
-  display: block;
   width: 100%;
-  box-sizing: border-box;
+  max-width: 600px;
+  height: auto;
+  object-fit: cover;
+  margin: 0 auto;
+  transition: transform 0.5s ease;
 }
 
-.slick-prev,
-.slick-next {
-  font-size: 20px;
-  color: #333; /* Color for arrows */
-  z-index: 1; /* Ensure arrows are above the images */
+.feature-image img:hover {
+  transform: scale(1.05);
 }
 
-.slick-prev {
-  left: -50px; /* Position left arrow */
-}
-
-.slick-next {
-  right: -50px; /* Position right arrow */
-}
-
-.slick-prev:before,
-.slick-next:before {
-  color: #333; /* Ensure arrows have color */
-  font-size: 30px; /* Make arrows bigger */
-}
-
-.slick-prev:hover,
-.slick-next:hover {
-  color: #000; /* Darker color when hovering */
-}
-
-/* Slick Dots Navigation (below the slider) */
-.slick-dots {
-  position: absolute;
-  bottom: 10px;
-  width: 100%;
+.humor-harm {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
   text-align: center;
-  z-index: 2;
+  margin-top: 20px;
+  opacity: 0;
+  animation: fadeIn 1.5s forwards;
 }
 
-.slick-dots li button:before {
-  color: #333; /* Color for navigation dots */
-  font-size: 18px;
+.humor-harm h1 {
+  font-size: 36px;
+  font-weight: bold;
+  color: #333;
+  margin: 0;
+  text-transform: uppercase;
+  animation: textIn 2s ease-out;
+}
+
+.humor-harm-images {
+  width: 100%;
+  position: relative;
+}
+
+.humor-harm-image img {
+  width: 100%;
+  max-width: 600px;
+  height: auto;
+  margin: 0 auto;
+  object-fit: cover;
+  opacity: 0;
+  animation: fadeInImage 1.5s ease forwards;
 }
 
 .slick-dots li.slick-active button:before {
-  color: #ff6600; /* Active dot color */
+  color: #f5a623;
 }
 
-/* Add shadow and rounded corners to slider images */
-.slick-slide img {
-  border-radius: 5px;
-  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.15); /* Optional: Add shadow on images */
-  transition: transform 0.3s ease; /* Make transition faster */
-}
-
-/* Hover effect to slightly scale the image */
-.slick-current img {
-  transform: scale(1.1); /* Slightly increase the size of the current image */
-}
-
-/* Optional: Adjust slider behavior on smaller screens */
 @media (max-width: 768px) {
-  .feature-image img {
-    max-width: 350px; /* Smaller image size on mobile */
+  .feature-image img,
+  .humor-harm-image img {
+    max-width: 100%;
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes textIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInImage {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
   }
 }

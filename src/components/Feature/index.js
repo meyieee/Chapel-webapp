@@ -1,13 +1,14 @@
 import { getDatabase, ref, onValue } from "firebase/database";
 import { useEffect, useState } from "react";
-import Slider from "react-slick"; // Import Slider component from react-slick
+import Slider from "react-slick";
 
 const Feature = () => {
-  const [feature, setFeature] = useState([]);
+  const [feature, setFeature] = useState({});
   const [imageUrls, setImageUrls] = useState([]);
+  const [imageUrls2, setImageUrls2] = useState([]);
+  const [imageUrlsHumor, setImageUrlsHumor] = useState([]);
 
   useEffect(() => {
-    // Ambil data feature dan gambar dari Firebase Realtime Database
     const db = getDatabase();
     const featureRef = ref(db, "feature/");
 
@@ -15,53 +16,68 @@ const Feature = () => {
       const data = snapshot.val();
       setFeature(data);
 
-      // Mengambil URL gambar dari Firebase Realtime Database
-      const images = [data.image1, data.image2, data.image3];
-      setImageUrls(images);
+      setImageUrls([data.image1, data.image2, data.image3]);
+
+      setImageUrls2([
+        data.feature2.image1,
+        data.feature2.image2,
+        data.feature2.image3,
+      ]);
     });
   }, []);
 
-  // Slick slider settings
   const settings = {
-    dots: true, // Show navigation dots
+    dots: true,
     infinite: true,
-    speed: 300, // Faster transition (300ms)
-    slidesToShow: 1, // Show 1 slide at a time
+    speed: 300,
+    slidesToShow: 1,
     slidesToScroll: 1,
-    autoplay: true, // Enable autoplay
-    autoplaySpeed: 3000, // Auto-slide every 3 seconds
-    arrows: false, // Disable arrows, only dots for navigation
-    centerMode: false, // No centering mode, images stay aligned left
-    cssEase: "ease-in-out", // Smooth transition easing for the sliding
+    autoplay: true,
+    autoplaySpeed: 3000,
+    arrows: false,
+    centerMode: false,
+    fade: true,
+    cssEase: "ease-in-out",
   };
 
   return (
     <section id="feature">
       <div className="container">
         <div className="row">
-          {/* Feature 1 with slider for images */}
+          {/* Feature 1 */}
           <div className="col-md-12">
-            <div className="feature-thumb">
-              <h3>{feature.title}</h3>
-              <p>{feature.subTitle}</p>
+            <div className="feature-box">
+              <div className="feature-text">
+                <h3>{feature.title || "Loading ..."}</h3>
+                <Slider {...settings}>
+                  {imageUrls.map((url, index) => (
+                    <div key={index} className="feature-image">
+                      <img
+                        src={`data:image/jpeg;base64,${url}`}
+                        alt={`Feature ${index + 1}`}
+                      />
+                    </div>
+                  ))}
+                </Slider>
+              </div>
+            </div>
+          </div>
 
-              {/* Carousel for images */}
-              <div className="feature-images">
-                {imageUrls.length > 0 ? (
-                  <Slider {...settings}>
-                    {imageUrls.map((url, index) => (
-                      <div className="feature-image" key={index}>
-                        <img
-                          src={`data:image/jpeg;base64,${url}`} // Menampilkan gambar dalam format base64
-                          alt={`Feature ${index + 1}`}
-                          className="img-fluid" // Apply the class to make it responsive
-                        />
-                      </div>
-                    ))}
-                  </Slider>
-                ) : (
-                  <p>Loading images...</p>
-                )}
+          {/* Feature 2 */}
+          <div className="col-md-12">
+            <div className="feature-box">
+              <div className="feature-text">
+                <h3>{feature.feature2?.title || "Loading ..."}</h3>
+                <Slider {...settings}>
+                  {imageUrls2.map((url, index) => (
+                    <div key={index} className="feature-image">
+                      <img
+                        src={`data:image/jpeg;base64,${url}`}
+                        alt={`Feature 2 Image ${index + 1}`}
+                      />
+                    </div>
+                  ))}
+                </Slider>
               </div>
             </div>
           </div>
